@@ -22,39 +22,88 @@ const Index = () => {
   ]);
   const [currentEntry, setCurrentEntry] = useState('');
 
-  const gallery = [
-    {
-      id: 1,
-      image: 'https://cdn.poehali.dev/projects/5004dc9a-cc38-4716-be8d-5a94e5ff696b/files/f08a5965-da8b-4f43-882f-5f1488688481.jpg',
-      title: 'Первое достижение',
-      description: 'Помни этот момент — он показал, на что ты способен'
-    },
-    {
-      id: 2,
-      image: 'https://cdn.poehali.dev/projects/5004dc9a-cc38-4716-be8d-5a94e5ff696b/files/431218d5-7800-4ea2-aaa9-4146c4e131cf.jpg',
-      title: 'Путь к цели',
-      description: 'Каждый шаг приближает тебя к мечте'
-    },
-    {
-      id: 3,
-      image: 'https://cdn.poehali.dev/projects/5004dc9a-cc38-4716-be8d-5a94e5ff696b/files/30a3c3ef-b3b9-41d0-bb58-01071990f414.jpg',
-      title: 'Новые горизонты',
-      description: 'Впереди столько возможностей!'
-    }
-  ];
+
 
   const quotes = [
     {
       text: 'Ты сильнее, чем думаешь. Каждый день — это новая возможность доказать это себе.',
-      author: 'Из сердца'
+      author: 'Из сердца',
+      category: 'Сила'
     },
     {
       text: 'Помни: падать — это нормально. Главное — каждый раз подниматься.',
-      author: 'Твоя поддержка'
+      author: 'Твоя поддержка',
+      category: 'Стойкость'
     },
     {
       text: 'Твой путь уникален. Не сравнивай себя с другими — сравнивай себя вчерашнего с собой сегодняшним.',
-      author: 'Мудрость жизни'
+      author: 'Мудрость жизни',
+      category: 'Рост'
+    },
+    {
+      text: 'Трудности — это не препятствия, а ступени к твоей цели. Каждая проблема делает тебя опытнее.',
+      author: 'Жизненный опыт',
+      category: 'Преодоление'
+    },
+    {
+      text: 'Не бойся ошибаться. Ошибки — это уроки, которые приближают тебя к успеху.',
+      author: 'Путь к мастерству',
+      category: 'Обучение'
+    },
+    {
+      text: 'Ты уже прошёл через многое. Если смог тогда, сможешь и сейчас.',
+      author: 'Твоя история',
+      category: 'Уверенность'
+    },
+    {
+      text: 'Верь в себя даже тогда, когда никто не верит. Твоя вера — это твоя сила.',
+      author: 'Внутренний голос',
+      category: 'Вера'
+    },
+    {
+      text: 'Маленькие шаги каждый день приводят к большим результатам. Продолжай двигаться.',
+      author: 'Мудрость пути',
+      category: 'Постоянство'
+    },
+    {
+      text: 'Ты достоин счастья, успеха и любви. Не позволяй никому говорить тебе обратное.',
+      author: 'Из сердца',
+      category: 'Самоценность'
+    },
+    {
+      text: 'Твои мечты реальны. Просто нужно время и усилия, чтобы превратить их в жизнь.',
+      author: 'Вера в будущее',
+      category: 'Мечты'
+    },
+    {
+      text: 'Когда кажется, что силы на исходе — помни, для чего ты начал. Твоя цель стоит усилий.',
+      author: 'Источник мотивации',
+      category: 'Цель'
+    },
+    {
+      text: 'Ты не один. Всегда есть те, кто верит в тебя и поддерживает на каждом шагу.',
+      author: 'Твоя опора',
+      category: 'Поддержка'
+    },
+    {
+      text: 'Плохие дни временны. Хорошие дни обязательно придут. Держись.',
+      author: 'Надежда',
+      category: 'Надежда'
+    },
+    {
+      text: 'Твоя ценность не зависит от мнения других. Ты ценен просто потому, что ты — это ты.',
+      author: 'Самопринятие',
+      category: 'Ценность'
+    },
+    {
+      text: 'Не сдавайся за день до чуда. Твой прорыв может быть уже завтра.',
+      author: 'Терпение',
+      category: 'Надежда'
+    },
+    {
+      text: 'Каждый раз, когда ты встаёшь после падения, ты становишься сильнее. Ты — боец.',
+      author: 'Сила духа',
+      category: 'Стойкость'
     }
   ];
 
@@ -113,12 +162,8 @@ const Index = () => {
           <p className="text-xl text-muted-foreground">Твоё личное пространство поддержки и вдохновения</p>
         </header>
 
-        <Tabs defaultValue="gallery" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8 bg-white/80 backdrop-blur-sm">
-            <TabsTrigger value="gallery" className="flex items-center gap-2">
-              <Icon name="Images" size={16} />
-              <span className="hidden sm:inline">Моменты</span>
-            </TabsTrigger>
+        <Tabs defaultValue="quotes" className="w-full">
+          <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/80 backdrop-blur-sm">
             <TabsTrigger value="quotes" className="flex items-center gap-2">
               <Icon name="MessageCircle" size={16} />
               <span className="hidden sm:inline">Слова</span>
@@ -133,59 +178,38 @@ const Index = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="gallery" className="space-y-6 animate-fade-in">
-            <div className="text-center mb-6">
-              <h2 className="text-3xl font-bold text-foreground mb-2">Твои лучшие моменты</h2>
-              <p className="text-muted-foreground">Каждое достижение — это шаг вперёд</p>
-            </div>
-            <div className="grid gap-6">
-              {gallery.map((item, index) => (
-                <Card 
-                  key={item.id} 
-                  className="overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] bg-white/90 backdrop-blur-sm"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <Badge className="absolute top-4 right-4 bg-primary text-white">
-                      #{item.id}
-                    </Badge>
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-semibold mb-2 text-foreground">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
+
 
           <TabsContent value="quotes" className="space-y-6 animate-fade-in">
             <div className="text-center mb-6">
               <h2 className="text-3xl font-bold text-foreground mb-2">Слова поддержки</h2>
               <p className="text-muted-foreground">Когда нужна мотивация — вспомни эти слова</p>
             </div>
-            <div className="grid gap-6">
+            <div className="grid gap-5">
               {quotes.map((quote, index) => (
                 <Card 
                   key={index}
                   className="bg-white/90 backdrop-blur-sm border-l-4 border-primary hover:shadow-xl transition-all duration-300 animate-scale-in"
-                  style={{ animationDelay: `${index * 200}ms` }}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardContent className="p-8">
-                    <Icon name="Quote" size={32} className="text-primary mb-4 opacity-50" />
-                    <p className="text-xl text-foreground mb-4 leading-relaxed font-medium italic">
-                      "{quote.text}"
-                    </p>
-                    <p className="text-sm text-muted-foreground flex items-center gap-2">
-                      <Icon name="Heart" size={14} className="text-primary" />
-                      {quote.author}
-                    </p>
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3">
+                      <Icon name="Quote" size={24} className="text-primary opacity-50 flex-shrink-0 mt-1" />
+                      <div className="flex-1">
+                        <p className="text-lg text-foreground mb-3 leading-relaxed font-medium italic">
+                          "{quote.text}"
+                        </p>
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <p className="text-sm text-muted-foreground flex items-center gap-2">
+                            <Icon name="Heart" size={14} className="text-primary" />
+                            {quote.author}
+                          </p>
+                          <Badge variant="secondary" className="text-xs">
+                            {quote.category}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
